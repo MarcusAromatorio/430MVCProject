@@ -7,7 +7,7 @@
 var models = require('../models');
 
 // The model for the login page is loaded here (access to the database)
-var Account = models.Account;
+var Account = models.AccountModel;
 
 // Define the function to serve up the login page
 var loginPage = function(request, response) {
