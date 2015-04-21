@@ -38,7 +38,7 @@ var db = mongoose.connect(dbURI, function(error) {
 
 // Variable denoting the redis url for sessioning
 var redisURL = {
-    hostname: 'localhost';
+    hostname: 'localhost',
     port: '6379'
 };
 
