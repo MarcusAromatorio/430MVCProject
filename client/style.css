@@ -1,0 +1,58 @@
+.wrapper {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	width: 300px;
+	padding: 5px;
+	border: 2px solid gray;
+	background: darkGray;
+}
+
+#singupForm {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	padding: 5px;
+	border: 2px solid gray;
+	background: darkGray;
+}
+
+#user, #pass, #pass2 {
+	background: white;
+}
+
+#chatWindow {
+	background: white;
+	overflow: scroll;
+	width: 250px;
+	height: 200px;
+}
+.sent {
+	text-align: right;
+}
+.received {
+	text-align: left;
+}
+.sendMessage {
+	text-decoration: none;
+}
+.sendMessage:link {
+	background: "#7AA3CC";
+}
+.sendMessage:hover {
+	background: "#99CCFF";
+}
+.sendMessage:visited {
+	background: "#7AA3CC";
+}
+.sendMessage:active {
+	background: "#3399FF";
+}
+
+nav{
+	background: "#7AA3CC";
+}
+
+.navlink{
+	background: "#99CCFF";
+}

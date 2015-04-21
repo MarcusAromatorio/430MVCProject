@@ -1,0 +1,19 @@
+extends ./base.jade
+block append style
+  link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    .navlink
+      a(href="/login") Login
+    .navlink
+      a(href="/signup") Sign Up
+  .wrapper
+    #chat
+      p Chat with Cat
+      #chatWindow(readonly="readonly")
+    form#catChat(class="catForm", name="catForm", action="/calls", method="POST")
+      input#message(type="text", name="message", placeholder="Type your message here")
+      a#sendMessage(class="sendMessage", href="#") Send Message
+  p#errorMessage
+block scripts
+  script(src="/assets/catCall.js");
