@@ -77,7 +77,7 @@ app.set('views', path.resolve(__dirname + '/views'));
 app.use(favicon(path.resolve(__dirname + '/../client/img/favicon.png')));
 
 // Give the application reference to the cookie parser so that saved data is easy to access
-app.use(cookieParser());
+app.use(cookieParser('Cat Facts'));
 
 // Define the routes that the application serves once requested
 router(app);    // Modifies the app object with added functionality

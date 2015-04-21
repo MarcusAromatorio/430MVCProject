@@ -32,7 +32,7 @@ var router = function(app){
 	app.post('/calls', controllers.CatCall.chat); // POST method from catcall page calls the "chat" method of the associated controller
 
 	// The root directory takes users to the login page
-	app.get('/', middleware.requiresLogout, controllers.Account.loginPage);
+	app.get('/', controllers.Account.loginPage);
 
 };
 
