@@ -64,7 +64,7 @@ app.use(session({
     store: new RedisStore(),
     secret: 'Cat Facts',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
 
 // Define the application's view engine as 'jade', which gives us control over the object oriented templating language jade
