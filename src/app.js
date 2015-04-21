@@ -20,6 +20,7 @@ var bodyParser = require('body-parser');            // Easy and optimized parsin
 var mongoose = require('mongoose');                 // Fast, powerful interface with the MongoDB database linked to the project
 var session = require('express-session');           // Express sessions to ensure user profiles can stay connected
 var RedisStore = require('connect-redis')(session); // Interface with the Redis cloud so sessions can authenticate quickly and safely
+var url = require('url');                           // Function to parse urls easily ad without much overhead
 
 // Locate the database URI (uniform resource identifier) to store data. When pushed to Heroku, process.env.MONGOLAB_URI will be defined automatically
 var dbURI = process.env.MONGOLAB_URI || "mongodb://localhost/catcalling";
@@ -34,6 +35,21 @@ var db = mongoose.connect(dbURI, function(error) {
     }
     // Otherwise, mongoose connects to the database for us to use
 });
+
+// Variable denoting the redis url for sessioning
+var redisURL = {
+    hostname: 'localhost';
+    port: '6379'
+};
+
+// Variable for a redis password
+var redisPASS;
+
+// Check if the serveris hosted on heroku (process.env is specific to heroku)
+if(process.env.REDISCLOUD_URL) {
+    redisURL = url.parse(process.env.REDISCLOUD_URL);
+    redisPASS = redisURL.auth.split(":")[1];
+}
 
 // Define routes that the server uses to guide users across the application
 var router = require('./router.js');
@@ -61,7 +77,11 @@ app.use(bodyParser.urlencoded({
 
 // Define the session that RedisStore will use to keep users logged in and authenticated
 app.use(session({
-    store: new RedisStore(),
+    store: new RedisStore({ // Pass the defined proeprties into the redisStore so that we can keep track of sessions
+        host: redisURL.hostname,
+        port: redisURL.port,
+        pass: redisPASS
+    }),
     secret: 'Cat Facts',
     resave: true,
     saveUninitialized: false
