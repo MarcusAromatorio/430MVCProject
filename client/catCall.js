@@ -9,16 +9,13 @@
 
 $(document).ready(function() {
 
-	// Describe what is done with a response from the server
-	function successfulResponse(result, status, xhr) {
-		// The server said something to the user, found in result.responseWord
-		var response = result.responseWord || JSON.parse(xhr.responseText).responseWord;
+	// When the user decides to post a message to Cat
+	function postChatMessage(message) {
+		// Wrap the message in HTML to style it properly
+		var wrapped = "<p class=\"sent\">You: " + message + "</p>";
 
-		// Wrap this word in HTML tags so that when added it is styled to fit the page properly
-		response = "<p class=\"received\">" + response + "</p>";
-
-		// Add the response to the chat window
-		$("#chatWindow").innerHTML += response;
+		// Add the message to the chat window
+		$("#chatWindow").append(wrapped);
 	}
 
 
@@ -37,7 +34,17 @@ $(document).ready(function() {
 			url: action,
 			data: data,
 			dataType: "json",
-			success: successfulResponse,
+			success: function(result, status, xhr){
+				// The server said something to the user, found in result.word
+				var response = result.word;
+
+				// Wrap this word in HTML tags so that when added it is styled to fit the page properly
+				var responseWrapped = "<p class=\"received\">" + response + "</p>";
+
+				// Add the response to the chat window
+				$("#chatWindow").append(responseWrapped);
+
+			},
 			error: function(xhr, status, error) {
 				var messageObject = JSON.parse(xhr.responseText);
 				handleError(messageObject.error);
@@ -48,6 +55,9 @@ $(document).ready(function() {
 	// Attach the event listener to the submitMessage link
 	$("#sendMessage").on("click", function(e) {
 		e.preventDefault();
+
+		// Post the chat message to the chat window
+		postChatMessage($("#message").val());
 
 		// Send the message to the server
 		sendAjax($("#catChat").attr("action"), $("#catChat").serialize());

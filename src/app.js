@@ -55,7 +55,7 @@ app.use('/assets', express.static(path.resolve(__dirname + '../../client/')));
 app.use(compression());
 
 // Give the application the body parser to ease request interpretation and response delivery
-app.use(bodyParser.urlEncoded({
+app.use(bodyParser.urlencoded({
     extended: true
 }));
 
@@ -71,7 +71,7 @@ app.use(session({
 app.set('view engine', 'jade'); // Explicitly tells the application to look for files with .jade extensions
 
 // Define the views directory for the application to find the .jade files to be used in rendering HTML markup
-app.set('views', path.resolve(__dirname + 'views'));
+app.set('views', path.resolve(__dirname + '/views'));
 
 // Define the favicon file to be served on the favicon request
 app.use(favicon(path.resolve(__dirname + '/../client/img/favicon.png')));

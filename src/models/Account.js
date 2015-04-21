@@ -3,7 +3,7 @@
 * This model is able to lookup accounts by different criteria and to authenticate them safely
 */
 
-// To encrypt, the 'crypto' library is brought in
+// To encrypt, the 'crypto' library is brought in from the node core
 // To access and store data to MongoDb, the Mongoose library is brought in
 var crypto = require('crypto');
 var mongoose = require('mongoose');
@@ -29,7 +29,7 @@ var AccountSchema = new mongoose.Schema({
 
 	salt: {
 		type: Buffer,
-		requiredL true
+		required: true
 	},
 
 	password: {
@@ -37,7 +37,7 @@ var AccountSchema = new mongoose.Schema({
 		required: true
 	},
 
-	createdData {
+	createdData: {
 		type: Date,
 		default: Date.now
 	}
@@ -77,7 +77,7 @@ AccountSchema.statics.findByUsername = function(name, callback) {
 	};
 
 	// Return the result of finding the first match in the AccountModel
-	return AccoutModel.findOne(search, callback);
+	return AccountModel.findOne(search, callback);
 };
 
 // Define the static method that generates a hash string
@@ -86,7 +86,7 @@ AccountSchema.statics.generateHash = function(password, callback) {
 	var salt = crypto.randomBytes(saltLength);
 
 	// Invoke the pbkdf2 function and return the result via callback
-	crpyto.pbkdf2(password, salt, iterations, keyLength, function(error, hash) {
+	crypto.pbkdf2(password, salt, iterations, keyLength, function(error, hash) {
 		return callback(salt, hash.toString('hex'));
 	});
 };

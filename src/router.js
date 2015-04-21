@@ -17,7 +17,7 @@ var middleware = require('./middleware');
 var router = function(app){
 
 	// If the user is attempting to log in, make sure they are logged out first
-	app.get('/login', mid.requiresLogout, controllers.Account.loginPage);
+	app.get('/login', middleware.requiresLogout, controllers.Account.loginPage);
 	app.post('/login', controllers.Account.login); // POST method from the loginPage routes to the account.login method
 
 	// Route /logout requests to the logout method, which in turn ends session and redirects to the home page
@@ -28,7 +28,7 @@ var router = function(app){
 	app.post('/signup', controllers.Account.signup); // POST method from signup page routes to account.signup method
 
 	// Route /calls requests to the call page where users may chat with the server. Requires login, handled by middleware
-	app.get('/calls', mid.requiresLogin, controllers.CatCall.callPage);
+	app.get('/calls', middleware.requiresLogin, controllers.CatCall.callPage);
 	app.post('/calls', controllers.CatCall.chat); // POST method from catcall page calls the "chat" method of the associated controller
 
 	// The root directory takes users to the login page

@@ -67,7 +67,7 @@ var signup = function(request, response) {
 
 	// If the two passwords aren't the same, return with another error
 	if(body.pass !== body.pass2) {
-		return response.status(400).json(error: "Both passwords must match"});
+		return response.status(400).json({error: "Both passwords must match"});
 	}
 
 	// This point of the method assumes all fields entered and both passwords match

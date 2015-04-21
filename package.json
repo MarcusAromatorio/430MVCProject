@@ -2,10 +2,10 @@
   "name": "430MVCProject",
   "version": "1.0.0",
   "description": "A Model View Controller project made in IGME 430",
-  "main": "./src/index.js",
+  "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/app.js",
-    "pretest": "jshint ./src",
+    "pretest": "jshint ./src/app.js",
     "test": "echo \"Test complete\""
   },
   "repository": {

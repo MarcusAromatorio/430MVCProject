@@ -8,7 +8,7 @@ var callPage = function(request, response) {
 
 	// This function is protected by middleware which requres the user to be logged in
 	// This function executing means that a user is, in fact, logged in
-	response.render('chat');
+	response.render('app');
 };
 
 // Define how a user "chats" with the server
@@ -20,17 +20,20 @@ var chat = function(request, response) {
 		return response.redirect('/');
 	}
 
+	// Capture message receipt
+	var receivedMessage = request.body.message + "";
+
 	// The chat function takes the request's body and analyzes the message property that sends with POST
 	// The response is based on how many letters are in the message
-	var responseLetters = request.body.message.length;
+	var responseLetters = receivedMessage.length;
 
-	var responseWord = 'Me';
+	var responseWord = 'Cat: Me';
 
 	for (var i = 0; i < responseLetters; i++) {
 		responseWord += 'o';
 	}
 
-	responseWord =+ 'w';
+	responseWord += 'w';
 
 	// Yep. The server says 'Meow' back to the user, depending on how many letters the user sends in their message
 	// Could say 'mew' if the user sends an empty message

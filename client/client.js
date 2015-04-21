@@ -43,7 +43,7 @@ $(document).ready(function() {
 		}
 
 		// Ensure both passwords match before signing user up
-		if($("#pass").val !== $("#pass2").val()) {
+		if($("#pass").val() !== $("#pass2").val()) {
 			handleError("Both passwords must match!");
 			return false;
 		}

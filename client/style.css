@@ -21,6 +21,13 @@
 	background: white;
 }
 
+#cat {
+	width: 350px;
+	height: 475px;
+	position: absolute;
+	left: 400px;
+}
+
 #chatWindow {
 	background: white;
 	overflow: scroll;
@@ -37,22 +44,22 @@
 	text-decoration: none;
 }
 .sendMessage:link {
-	background: "#7AA3CC";
+	background: #7AA3CC;
 }
 .sendMessage:hover {
-	background: "#99CCFF";
+	background: #99CCFF;
 }
 .sendMessage:visited {
-	background: "#7AA3CC";
+	background: #7AA3CC;
 }
 .sendMessage:active {
-	background: "#3399FF";
+	background: #3399FF;
 }
 
 nav{
-	background: "#7AA3CC";
+	background: #7AA3CC;
 }
 
 .navlink{
-	background: "#99CCFF";
+	background: #99CCFF;
 }

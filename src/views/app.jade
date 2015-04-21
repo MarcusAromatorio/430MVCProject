@@ -10,10 +10,11 @@ block body
   .wrapper
     #chat
       p Chat with Cat
-      #chatWindow(readonly="readonly")
+      #chatWindow
     form#catChat(class="catForm", name="catForm", action="/calls", method="POST")
       input#message(type="text", name="message", placeholder="Type your message here")
       a#sendMessage(class="sendMessage", href="#") Send Message
+  img#cat(src="/assets/img/catSmall.png")
   p#errorMessage
 block scripts
-  script(src="/assets/catCall.js");
+  script(src="/assets/catCall.js")
